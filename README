@@ -1,0 +1,4 @@
+This is a WordPress plugin that (mostly) fixes a WP bug
+to do with search URLs (bug http://core.trac.wordpress.org/ticket/13961)
+This plugin should only be used for WP versions that exhibit the bug (most
+likely versions <3.2).
