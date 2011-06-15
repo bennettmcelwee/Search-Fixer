@@ -1,12 +1,7 @@
-This is a WordPress plugin that fixes a WP bug: "pretty" search URLs
-containing encoded spaces
-(e.g. http://example.com/search/boo%20radley) are not correctly
-decoded and so do not work.
+This is a WordPress plugin that fixes a WP bug: "pretty" search URLs containing encoded spaces (e.g. http://example.com/search/boo%20radley) are not correctly decoded and so do not work.
 
 The bug is covered at http://core.trac.wordpress.org/ticket/13961
 
-Warning: once this bug is fixed (maybe in WP 3.3) this plugin may
-possibly cause some search URLs to fail.
+This bug will eventually be fixed (hopefully during the second half of 2011). After that this plugin will no longer be needed.
 
-For details, see
-http://www.thunderguy.com/semicolon/2011/06/08/search-fixer-wordpress-plugin/
+For details, see http://www.thunderguy.com/semicolon/2011/06/08/search-fixer-wordpress-plugin/

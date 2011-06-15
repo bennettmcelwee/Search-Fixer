@@ -6,17 +6,19 @@ Description: Correctly handle pretty search URLs containing spaces (WordPress bu
 Version: 2.0
 Author: Bennett McElwee
 Author URI: http://www.thunderguy.com/semicolon/
+Licence: GPLv2 (Copyright 2011 Bennett McElwee, except for portion copied from WordPress core)
 */
 
 add_filter('posts_search', 'smcln_fix_search', 10, 2);
 
 function smcln_fix_search($search, $wp_query) {
+	global $wpdb;
+
 	// Copied this line from somewhere. I think it prevents the filter from running on subqueries, or something.
 	if ($GLOBALS['wp_query'] !== $wp_query) {
 		return $search;
 	}
 
-	// Next bit is adapted from http://core.trac.wordpress.org/attachment/ticket/13961/13961.patch
 	if ( ! empty( $_GET['s'] ) ) {
 		// This is not a pretty URL, so we don't need to do anything
 		return $search;
@@ -27,15 +29,20 @@ function smcln_fix_search($search, $wp_query) {
 	// $q['s'] has already had slashes stripped
 
 	// Next bit is adapted from http://core.trac.wordpress.org/attachment/ticket/13961/13961.patch
+	// Props to Sergey Biryukov.
 	$decoded = urldecode( $q['s'] );
 	if ( $decoded == $q['s'] ) {
 		// url decoding made no difference, so we don't need to do anything
 		return $search;
 	}
+
+	// Regenerate the search query from the decoded search terms
+	$search = '';
+
 	// Replace search string with the decoded version for further processing
 	$q['s'] = $decoded;
 	
-	// Process the decoded search string, as in WP_Query->get_posts()
+	// Process the decoded search string, as in WP_Query->get_posts() - following code copied more-or-less verbatim
 	if ( !empty($q['sentence']) ) {
 		$q['search_terms'] = array($q['s']);
 	} else {
