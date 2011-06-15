@@ -1,4 +1,12 @@
-This is a WordPress plugin that (mostly) fixes a WP bug
-to do with search URLs (bug http://core.trac.wordpress.org/ticket/13961)
-This plugin should only be used for WP versions that exhibit the bug (most
-likely versions <3.2).
+This is a WordPress plugin that fixes a WP bug: "pretty" search URLs
+containing encoded spaces
+(e.g. http://example.com/search/boo%20radley) are not correctly
+decoded and so do not work.
+
+The bug is covered at http://core.trac.wordpress.org/ticket/13961
+
+Warning: once this bug is fixed (maybe in WP 3.3) this plugin may
+possibly cause some search URLs to fail.
+
+For details, see
+http://www.thunderguy.com/semicolon/2011/06/08/search-fixer-wordpress-plugin/
